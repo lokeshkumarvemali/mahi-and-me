@@ -72,7 +72,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["serial no."]. " - Name: " . $row["college name"]. " " . $row["gre score"]. $row[];
+        echo "id: " . $row["serial no."]. " - Name: " . $row["college name"]. " " . $row["gre score"]. $row["ielts"].$row["toefl"];
     }
 } else {
     echo "0 results";
