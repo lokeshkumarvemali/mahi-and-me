@@ -66,7 +66,7 @@ include 'conn.php';
 $gre=$_POST['g'];
 $toefl=$_POST['tf'];
 $ielts=$_POST['ie'];
-$sql="SELECT * FROM `college name` WHERE `gre score`>=$gre AND (`ielts`>=$ielts OR `toefl`>=$toefl);"
+$sql="SELECT * FROM `college name` WHERE `gre score`>=$gre AND (`ielts`>=$ielts OR `toefl`>=$toefl)";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
