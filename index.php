@@ -51,6 +51,24 @@
 <hr>
 <div style="border:1px solid black; height:75vh;overflow-y:scroll;">
   <div style="background-color:blue;height:30vh;">
+    <?php
+    include 'conn.php';
+    $gre=$_POST['g'];
+    $toefl=$_POST['tf'];
+    $ielts=$_POST['ie'];
+    $sql="SELECT * FROM `college name` WHERE `gre score`>=$gre AND (`ielts`>=$ielts OR `toefl`>=$toefl)";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            echo "id: " . $row["serial no."]. " - Name: " . $row["college name"]. " " . $row["gre score"]. $row["ielts"].$row["toefl"];
+        }
+    } else {
+        echo "0 results";
+    }
+
+    ?>
 
   </div>
   <div style="background-color:yellow;height:30vh;">
@@ -59,26 +77,6 @@
   <div style="background-color:pink;height:30vh;">
 
   </div>
-</div>
-<div>
-<?php
-include 'conn.php';
-$gre=$_POST['g'];
-$toefl=$_POST['tf'];
-$ielts=$_POST['ie'];
-$sql="SELECT * FROM `college name` WHERE `gre score`>=$gre AND (`ielts`>=$ielts OR `toefl`>=$toefl)";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["serial no."]. " - Name: " . $row["college name"]. " " . $row["gre score"]. $row["ielts"].$row["toefl"];
-    }
-} else {
-    echo "0 results";
-}
-
-?>
 </div>
 </body>
 </html>
