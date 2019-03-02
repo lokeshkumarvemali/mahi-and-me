@@ -30,7 +30,7 @@
   <form action='index.php' method="post">
   <table align="center">
     <tr><td>GRE</td>
-      <td><input type="g">
+      <td><input type="number" name='g'>
       </td>
     </tr>
     <tr><td>tofel</td>
@@ -39,6 +39,10 @@
     </tr>
     <tr><td>ielts</td>
       <td><input type="number" name="ie">
+      </td>
+    </tr>
+    <tr>
+      <td><input type='submit'>
       </td>
     </tr>
   </table>
@@ -59,8 +63,20 @@
 <div>
 <?php
 include 'conn.php';
+$gre=$_POST['g'];
+$toefl=$_POST['tf'];
+$ielts=$_POST['ie'];
+$sql="SELECT * FROM `college name` WHERE `gre score`>=$gre AND (`ielts`>=$ielts OR `toefl`>=$toefl);"
+$result = $conn->query($sql);
 
-$sql="SELECT * FROM `college name` WHERE `gre score`>=$_POST['g'] AND (`ielts`>=$_POST['ie'] OR `toefl`>=$_POST['tf']);"
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["serial no."]. " - Name: " . $row["college name"]. " " . $row["gre score"]. $row[];
+    }
+} else {
+    echo "0 results";
+}
 
 ?>
 </div>
