@@ -49,20 +49,15 @@
 </form>
 </div>
 <hr>
-<div style="border:1px solid black; height:75vh;overflow-y:scroll;">
-  <div style="background-color:blue;height:30vh;">
+<div style="border:1px solid black; height:70vh;overflow-y:scroll;">
+  <div style="background-color:lightblue;height:30vh;">
     <?php
     include 'conn.php';
-    $gre=($_POST['g']= "NULL") ?"0":"$_POST['g'] ";
-    $toefl=$_POST['tf'];
-    $ielts=$_POST['ie'];
-    $sql="SELECT * FROM `college name` WHERE `gre score`>=$gre AND (`ielts`>=$ielts OR `toefl`>=$toefl)";
+    $gre=(isset($_POST['g']) ?$_POST['g'] : 360 );
+    $toefl=(isset($_POST['tf']) ?$_POST['tf'] : 120 );
+    $ielts=(isset($_POST['ie']) ?$_POST['ie'] : 9 );
+    $sql="SELECT * FROM `college name` WHERE (`gre score`>=$gre AND `ielts`>=$ielts) OR (`gre score`>=$gre AND `toefl`>=$toefl)";
     $result = $conn->query($sql);
-    $slno=$row['serial no.'];
-    $clg=$row['college name'];
-    $g= $row['gre score'];
-    $i= $row['gre score'];
-    $t=$row['toefl'];
     ?>
 <table>
 <tr>
@@ -83,14 +78,6 @@
     }
     ?>
 </table>
-
-  </div>
-  <div style="background-color:yellow;height:30vh;">
-
-  </div>
-  <div style="background-color:pink;height:30vh;">
-
-  </div>
 </div>
 </body>
 </html>
