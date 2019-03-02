@@ -59,7 +59,8 @@
 <div>
 <?php
 include 'conn.php';
-$sql="SELECT * FROM `college name` WHERE `gre score` >=$_POST['g'] AND( `ielts` >=$_POST['ie'] OR `toefl` >=$_POST['tf']);"
+
+$sql="SELECT * FROM `college name` WHERE `gre score`>=$_POST['g'] AND (`ielts`>=$_POST['ie'] OR `toefl`>=$_POST['tf']);"
 
 ?>
 </div>
