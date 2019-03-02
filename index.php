@@ -53,22 +53,36 @@
   <div style="background-color:blue;height:30vh;">
     <?php
     include 'conn.php';
-    $gre=$_POST['g'];
+    $gre=($_POST['g']= "NULL") ?"0":"$_POST['g'] ";
     $toefl=$_POST['tf'];
     $ielts=$_POST['ie'];
     $sql="SELECT * FROM `college name` WHERE `gre score`>=$gre AND (`ielts`>=$ielts OR `toefl`>=$toefl)";
     $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
+    $slno=$row['serial no.'];
+    $clg=$row['college name'];
+    $g= $row['gre score'];
+    $i= $row['gre score'];
+    $t=$row['toefl'];
+    ?>
+<table>
+<tr>
+<th>serial no.</th>
+<th>college name</th>
+<th>gre score</th>
+<th>ielts</th>
+<th>toefl</th>
+</tr>
+<?php
+ if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            echo "id: " . $row["serial no."]. " - Name: " . $row["college name"]. " " . $row["gre score"]. $row["ielts"].$row["toefl"];
+        echo "<tr><td>".$row['serial no.']."</td><td>".$row['college name']."</td><td>". $row['gre score']."</td><td>".$row['ielts']."</td><td>".$row['toefl']."</td></tr>";
         }
     } else {
         echo "0 results";
     }
-
     ?>
+</table>
 
   </div>
   <div style="background-color:yellow;height:30vh;">
